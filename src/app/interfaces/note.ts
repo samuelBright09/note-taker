@@ -1,9 +1,9 @@
 export interface Note {
-    id: number;
+    id: string;
     title: string;
     content: string;
     isArchived: boolean;
-    createdAt: string;
-    editedAt?: string;
+    createdAt: Date;
+    editedAt?: Date;
     tags: string[];
 }

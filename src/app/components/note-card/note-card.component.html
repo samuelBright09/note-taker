@@ -1,1 +1,10 @@
-<p>note-card works!</p>
+<div class="card" [routerLink]="['/notes', note.id]">
+  <h3 class="title">{{ note.title }}</h3>
+  <div class="tags">
+    @if(note.tags.length > 0) { 
+        @for(tag of note.tags ; track $index) {
+    <span class="tag"> {{ tag }} </span>
+    } }
+  </div>
+  <small class="date">{{ note.createdAt | date: 'medium' }}</small>
+</div>

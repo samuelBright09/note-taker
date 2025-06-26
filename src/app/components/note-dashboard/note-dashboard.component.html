@@ -1,1 +1,21 @@
-<p>note-dashboard works!</p>
+<div class="dash">
+  <h1>All Notes</h1>
+  <button class="add" [routerLink]="['create']">Add Note</button>
+
+  <button class="archive" [routerLink]="['archived']">Archived</button>
+
+  <div class="search">
+    <input
+      type="text"
+      placeholder="Search notes by title, content, or tag..."
+      [formControl]="searchControl"
+    />
+  </div>
+
+  <div class="note-cards">
+    @for (note of notes; track $index) {
+
+    <app-note-card [note]="note"></app-note-card>
+    }
+  </div>
+</div>
