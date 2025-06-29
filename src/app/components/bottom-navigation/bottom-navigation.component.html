@@ -1,0 +1,57 @@
+<nav class="bottom-nav">
+  <ul class="bottom-nav-list">
+    <li class="bottom-nav-item">
+      <a (click)="goHome()" 
+         routerLinkActive="active" 
+         class="bottom-nav-link">
+        <span class="nav-icon">
+          <img src="assets/images/icon-home.svg" alt="home" />
+        </span>
+        <p class="nav-label">Home</p>
+      </a>
+    </li>
+    
+    <li class="bottom-nav-item">
+      <a id="search" 
+         class="bottom-nav-link"
+         [class.active]="isSearchActive"
+     >
+        <span class="nav-icon">
+          <img src="assets/images/icon-search.svg" alt="search" />
+        </span>
+        <p class="nav-label">Search</p>
+      </a>
+    </li>
+    
+    <li class="bottom-nav-item">
+      <a [routerLink]="['archived']"  
+         class="bottom-nav-link">
+        <span class="nav-icon">
+          <img src="assets/images/icon-archive.svg" alt="archive" />
+        </span>
+        <p class="nav-label">Archive</p>
+      </a>
+    </li>
+    
+    <li class="bottom-nav-item">
+      <a [routerLink]="['tags']" 
+         routerLinkActive="active" 
+         class="bottom-nav-link">
+        <span class="nav-icon">
+          <img src="assets/images/icon-tag.svg" alt="tags" />
+        </span>
+        <p class="nav-label">Tags</p>
+      </a>
+    </li>
+    
+    <li class="bottom-nav-item">
+      <a [routerLink]="['settings']" 
+         class="bottom-nav-link">
+        <span class="nav-icon">
+          <img src="assets/images/icon-settings.svg" alt="settings" />
+        </span>
+        <p class="nav-label">Settings</p>
+      </a>
+    </li>
+  </ul>
+</nav>

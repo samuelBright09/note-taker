@@ -1,77 +1,128 @@
-<div class="">
-  <h2 class="">
-    {{ isEditingNote ? 'Edit Note' : 'Create New Note' }}
-  </h2>
+<div class="note-container">
+  <!-- Header -->
 
-  <form [formGroup]="noteForm" (ngSubmit)="onSubmit()" class="">
-    <div class="">
-      <label for="title" class="">Title:</label>
-      <input id="title" type="text" formControlName="title"
-             class=""
-             [class.border-red-500]="noteForm.get('title')?.invalid && (noteForm.get('title')?.dirty || noteForm.get('title')?.touched)">
-      <p *ngIf="noteForm.get('title')?.invalid && (noteForm.get('title')?.dirty || noteForm.get('title')?.touched)"
-         class="">
-        Title is required.
-      </p>
-    </div>
-
-    <div class="mb-4">
-      <label for="content" class="">Content:</label>
-      <textarea id="content" formControlName="content"
-                class=""
-                [class.border-red-500]="noteForm.get('content')?.invalid && (noteForm.get('content')?.dirty || noteForm.get('content')?.touched)">
-      </textarea>
-      <p *ngIf="noteForm.get('content')?.invalid && (noteForm.get('content')?.dirty || noteForm.get('content')?.touched)"
-         class="">
-        Content is required.
-      </p>
-    </div>
-
-    <div class="tags">
-      <label for="tags" class="">Tags</label>
-      <input id="tags" type="text" formControlName="tags"
-             class="" placeholder="Enter tags separated by commas">
-    </div>
-    <div class="edited-at">
-      <p>Edited At: {{ lastEditedAt ? (lastEditedAt | date: 'medium') : 'Not edited yet' }}</p>
-     
-    </div>
-
-    <div class="">
-      <button type="submit"
-              class="">
-        Save Note
+  <form [formGroup]="noteForm" (ngSubmit)="onSubmit()" >
+    <header class="note-header">
+      <button type="button" (click)="backToDashboard()" >
+        <span>
+          <img src="assets/images/icon-arrow-left.svg" alt="Arrow Back" />
+        </span>
+        Go Back
       </button>
 
-      <button *ngIf="isEditingNote" type="button" (click)="confirmDelete()"
-              class="">
-        Delete Note
-      </button>
-      <button *ngIf="isEditingNote" type="button" (click)="archiveNote()"
-              class="">
-        {{ isArchived ? 'Unarchive Note' : 'Archive Note' }}
-      </button>
-    </div>
-    <button type="button" (click)="backToDashboard()"
-            class="">
-      Back to Dashboard
-    </button>
-  </form>
+      <div class="header-actions">
+        <button
+          *ngIf="isEditingNote"
+          type="button"
+          (click)="confirmDelete()"
+          
+        >
+          <span>
+            <img src="assets/images/icon-delete.svg" alt="Delete" />
+          </span>
+        </button>
 
-  <div *ngIf="showConfirmDelete" class="">
-    <div class="">
-      <h3 class="">Confirm Deletion</h3>
-      <p class="">Are you sure you want to delete this note? This action cannot be undone.</p>
-      <div class="">
-        <button (click)="cancelDelete()"
-                class="">
+        <button
+          *ngIf="isEditingNote"
+          type="button"
+          (click)="isArchived ? unArchiveNote() : archiveNote()"
+         
+        >
+          <span>
+            <img src="assets/images/icon-archive.svg" alt="Archive" />
+          </span>
+        </button>
+
+        <button type="button" (click)="backToDashboard()" >
           Cancel
         </button>
-        <button (click)="onDelete()"
-                class="">
-          Delete
+        <button type="submit" >Save Note</button>
+      </div>
+    </header>
+
+    <main class="note-content">
+      <!-- Title -->
+
+      <textarea
+        id="title"
+        formControlName="title"
+        placeholder="Enter a title…"
+        maxlength="30"
+        [class.border-red-500]="
+          noteForm.get('title')?.invalid &&
+          (noteForm.get('title')?.dirty || noteForm.get('title')?.touched)
+        "
+      ></textarea>
+      <p
+        *ngIf="
+          noteForm.get('title')?.invalid &&
+          (noteForm.get('title')?.dirty || noteForm.get('title')?.touched)
+        "
+        
+      >
+        Title is required.
+      </p>
+
+      <!-- Meta Information -->
+      <div class="note-meta">
+        <div class="meta-item">
+          <div class="tags">
+            <div class="before">
+              
+                <img src="assets/images/icon-tag.svg" alt="Tags" />
+              
+              <label for="tags" >Tags</label>
+            </div>
+            <input
+              id="tags"
+              type="text"
+              formControlName="tags"
+              
+              placeholder="Enter tags separated by commas"
+            />
+          </div>
+        </div>
+
+        <div class="meta-item">
+          <div class="before">
+           
+              <img src="assets/images/icon-clock.svg" alt="Edit" />
+            
+            <p>Last edited</p>
+          </div>
+          <p>
+            {{
+              lastEditedAt ? (lastEditedAt | date : "medium") : "Not edited yet"
+            }}
+          </p>
+        </div>
+      </div>
+
+      <hr />
+
+      <textarea
+        id="content"
+        formControlName="content"
+        placeholder="Start typing your note here…"
+      >
+      </textarea>
+    </main>
+  </form>
+
+  <!-- <div *ngIf="showConfirmDelete" >
+    <div >
+      <h3 >Confirm Deletion</h3>
+      <p >
+        Are you sure you want to delete this note? This action cannot be undone.
+      </p>
+      <div >
+        <button (click)="cancelDelete()" >Cancel</button>
+        <button (click)="onDelete()" >
+          <span>
+            <img src="assets/images/icon-delete.svg" alt="Delete" />
+          </span>
         </button>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>

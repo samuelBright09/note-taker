@@ -1,15 +1,26 @@
 <div class="dash">
-  <h1>All Notes</h1>
-  <button class="add" [routerLink]="['create']">Add Note</button>
+  <!-- Back button - only show when tag filter is active -->
+  <button
+    *ngIf="showBackButton$ | async"
+    (click)="goBack()"
+    class="back-button"
+  >
+    < Go Back
+  </button>
 
-  <button class="archive" [routerLink]="['archived']">Archived</button>
+  <div class="title-and-search">
+    <h1 class="page-title">{{ pageTitle$ | async }}</h1>
 
-  <div class="search">
-    <input
-      type="text"
-      placeholder="Search notes by title, content, or tag..."
-      [formControl]="searchControl"
-    />
+    <div class="search">
+      <span>
+        <img src="assets/images/icon-search.svg" alt="Search" />
+      </span>
+      <input
+        type="text"
+        placeholder="Search notes by title, content, or tag..."
+        [formControl]="searchControl"
+      />
+    </div>
   </div>
 
   <div class="note-cards">

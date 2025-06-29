@@ -1,3 +1,19 @@
-<div class="main">
-  <router-outlet />
-</div>
+<main class="app-main">
+  <header class="logo">
+    <img src="assets/images/logo.svg" alt="logo" />
+  </header>
+
+  <div class="outlet-content">
+    <router-outlet />
+    <button
+      class="fab"
+      [class.hidden]="shouldHideFab()"
+      (click)="onCreateNote()"
+      *ngIf="!shouldHideFab()"
+      aria-label="Create new note"
+    >
+      <img src="assets/images/icon-plus.svg" alt="Add" />
+    </button>
+    <app-bottom-navigation></app-bottom-navigation>
+  </div>
+</main>

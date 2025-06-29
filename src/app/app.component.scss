@@ -1,0 +1,163 @@
+.app-main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  header {
+    padding: 0.8rem 1rem;
+    text-align: start;
+  }
+
+  .outlet-content {
+    position: relative;
+    background-color: white;
+    flex: 1;
+    border-radius: 1.25rem 1.25rem 0 0;
+    overflow: hidden;
+    padding: 1.25rem 1rem;
+    
+
+    // Floating Action Button (FAB)
+    .fab {
+      position: fixed;
+      bottom: 80px; // Positioned above the bottom navigation
+      right: 20px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background-color: #4285f4;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(66, 133, 244, 0.4);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 999;
+      color: white;
+
+      img,
+      svg {
+        width: 24px;
+        height: 24px;
+        filter: invert(1); // Makes icon white
+      }
+
+      // Hover effects
+      &:hover {
+        background-color: #3367d6;
+        box-shadow: 0 6px 16px rgba(66, 133, 244, 0.5);
+        transform: translateY(-2px);
+      }
+
+      &:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 8px rgba(66, 133, 244, 0.4);
+      }
+
+      // Focus state for accessibility
+      &:focus {
+        outline: none;
+        box-shadow: 0 4px 12px rgba(66, 133, 244, 0.4),
+          0 0 0 3px rgba(66, 133, 244, 0.2);
+      }
+
+      // Hidden state for create/edit pages
+      &.hidden {
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(0.8);
+        pointer-events: none;
+      }
+    }
+
+    // Animation for showing/hiding
+    .fab-enter {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    .fab-enter-active {
+      opacity: 1;
+      transform: scale(1);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .fab-exit {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .fab-exit-active {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    // Responsive adjustments
+    @media (max-width: 768px) {
+      .fab {
+        bottom: 90px; // Adjust if bottom nav height changes on mobile
+        right: 16px;
+        width: 52px;
+        height: 52px;
+
+        &::before {
+          font-size: 22px;
+        }
+
+        img,
+        svg {
+          width: 22px;
+          height: 22px;
+        }
+      }
+    }
+
+    @media (max-width: 480px) {
+      .fab {
+        bottom: 85px;
+        right: 12px;
+        width: 48px;
+        height: 48px;
+
+        &::before {
+          font-size: 20px;
+        }
+
+        img,
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+
+    // Alternative styles for different themes
+    .fab-variant {
+      &.secondary {
+        background-color: #34a853;
+
+        &:hover {
+          background-color: #2d9142;
+        }
+      }
+
+      &.danger {
+        background-color: #ea4335;
+
+        &:hover {
+          background-color: #d33b2c;
+        }
+      }
+
+      &.dark {
+        background-color: #5f6368;
+
+        &:hover {
+          background-color: #4a4d52;
+        }
+      }
+    }
+  }
+}
