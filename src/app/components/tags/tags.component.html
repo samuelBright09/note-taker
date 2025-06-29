@@ -1,0 +1,21 @@
+<div class="tags-container">
+  <header class="tags-header">
+    <h1>Tags</h1>
+  </header>
+
+  <div class="tags-content" *ngIf="(uniqueTags$ | async) as tags;">
+    <div *ngIf="tags.length === 0; else tagsGrid" class="empty-state">
+      <p>No tags found yet. Create some notes!</p>
+      <img src="assets/images/icon-tag.svg" alt="Tag icon" class="empty-icon">
+    </div>
+
+    <ng-template #tagsGrid>
+      <div class="tags-list">
+        <div *ngFor="let tag of tags" class="tag-item" (click)="filterByTag(tag)">
+          <img src="assets/images/icon-tag.svg" alt="Tag" class="tag-icon">
+          <span class="tag-name">{{ tag }}</span>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

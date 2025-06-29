@@ -67,7 +67,7 @@ export class NoteFormComponent implements OnInit {
       } else {
         this.notesService.createNote(title, content, tagsArray);
       }
-      this.router.navigate(['/notes']); // Navigate back to the dashboard after operation
+      this.router.navigate(['']); // Navigate back to the dashboard after operation
     } else {
       // Mark all fields as touched to display validation messages
       this.noteForm.markAllAsTouched();
@@ -77,12 +77,16 @@ export class NoteFormComponent implements OnInit {
   archiveNote(): void {
     if (this.noteId) {
       this.notesService.toggleArchive(this.noteId, true);
+      this.isArchived = true;
+    
     }
   }
 
   unArchiveNote(): void {
     if (this.noteId) {
       this.notesService.toggleArchive(this.noteId, false);
+      this.isArchived = false;
+      
     }
   }
 
@@ -95,7 +99,7 @@ export class NoteFormComponent implements OnInit {
   onDelete(): void {
     if (this.noteId) {
       this.notesService.deleteNote(this.noteId);
-      this.router.navigate(['/notes']);
+      this.router.navigate(['']);
       this.showConfirmDelete = false; // Close the dialog
     }
   }
@@ -107,7 +111,7 @@ export class NoteFormComponent implements OnInit {
 
   // Navigate back to dashboard
   backToDashboard(): void {
-    this.router.navigate(['/notes']);
+    this.router.navigate(['']);
   }
 
   
