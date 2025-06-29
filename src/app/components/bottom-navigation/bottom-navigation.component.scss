@@ -89,31 +89,31 @@
           }
         }
 
-        // Active state
-        // &.active {
-        //   color: #4285f4;
+        Active state
+        &.active {
+          color: #4285f4;
 
-        //   .nav-icon {
-        //     background-color: rgba(66, 133, 244, 0.12);
+          .nav-icon {
+            background-color: rgba(66, 133, 244, 0.12);
 
-        //     img {
-        //       opacity: 1;
-        //       filter: brightness(0) saturate(100%) invert(42%) sepia(93%) saturate(1352%) hue-rotate(213deg) brightness(98%) contrast(101%);
-        //     }
-        //   }
+            img {
+              opacity: 1;
+              filter: brightness(0) saturate(100%) invert(42%) sepia(93%) saturate(1352%) hue-rotate(213deg) brightness(98%) contrast(101%);
+            }
+          }
 
-        //   // .nav-label {
-        //   //   color: #4285f4;
-        //   //   opacity: 1;
-        //   //   font-weight: 600;
-        //   // }
-        // }
+          // .nav-label {
+          //   color: #4285f4;
+          //   opacity: 1;
+          //   font-weight: 600;
+          // }
+        }
 
-        // Focus state for accessibility
-        // &:focus {
-        //   outline: 2px solid #4285f4;
+        Focus state for accessibility
+        &:focus {
+          outline: 2px solid #4285f4;
         
-        // }
+        }
       }
     }
   }

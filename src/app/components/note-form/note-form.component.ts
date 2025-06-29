@@ -32,7 +32,8 @@ export class NoteFormComponent implements OnInit {
     this.noteForm = this.fb.group({
       title: ['', Validators.required],
       content: ['', Validators.required],
-      tags: [''], // Tags can be optional
+      tags: [''], // Tags can be optional,
+  
     });
   }
 
@@ -47,6 +48,7 @@ export class NoteFormComponent implements OnInit {
              title: note.title,
               content: note.content,
               tags: note.tags ? note.tags.join(', ') : '',
+  
           });
           this.lastEditedAt = note.editedAt;
           this.isArchived = note.isArchived;
@@ -99,7 +101,7 @@ export class NoteFormComponent implements OnInit {
   onDelete(): void {
     if (this.noteId) {
       this.notesService.deleteNote(this.noteId);
-      this.router.navigate(['']);
+      this.router.navigate(['notes']);
       this.showConfirmDelete = false; // Close the dialog
     }
   }

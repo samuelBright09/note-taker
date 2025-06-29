@@ -5,8 +5,11 @@
     anytime.
   </p>
   <div class="arch-cards">
-    @for (note of archivedNotes; track $index) {
+    @if (archivedNotes.length === 0) {
+    <p>No notes have been archived yet. Move notes here for safekeeping.</p>
+    } @else { @for (note of archivedNotes; track $index) {
+
     <app-note-card [note]="note"></app-note-card>
-    }
+    } }
   </div>
 </div>
