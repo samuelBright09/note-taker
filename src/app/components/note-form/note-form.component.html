@@ -1,7 +1,7 @@
 <div class="note-container">
   <!-- Header -->
 
-  <form [formGroup]="noteForm" (ngSubmit)="onSubmit()" >
+  <form [formGroup]="noteForm" (ngSubmit)="onSubmit()"  >
     <header class="note-header">
       <button type="button" (click)="backToDashboard()" >
         <span>
@@ -23,9 +23,11 @@
         </button>
 
         <button
+        class="archive-btn"
           *ngIf="isEditingNote"
-          type="button"
           (click)="isArchived ? unArchiveNote() : archiveNote()"
+          [disabled]="isArchived ? false : true"
+          [class.disabled]="isArchived"
          
         >
           <span>
@@ -36,7 +38,7 @@
         <button type="button" (click)="backToDashboard()" >
           Cancel
         </button>
-        <button type="submit" >Save Note</button>
+        <button  [disabled]="noteForm.invalid" type="submit" >Save</button>
       </div>
     </header>
 
@@ -109,20 +111,37 @@
     </main>
   </form>
 
-  <!-- <div *ngIf="showConfirmDelete" >
-    <div >
-      <h3 >Confirm Deletion</h3>
-      <p >
-        Are you sure you want to delete this note? This action cannot be undone.
-      </p>
-      <div >
-        <button (click)="cancelDelete()" >Cancel</button>
-        <button (click)="onDelete()" >
-          <span>
-            <img src="assets/images/icon-delete.svg" alt="Delete" />
-          </span>
-        </button>
+
+  <!-- Delete Modal -->
+<div class="modal-overlay" *ngIf="showConfirmDelete">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <div class="delete-icon">
+        <img src="assets/images/icon-delete.svg" alt="Delete" />
       </div>
+      <h2 class="modal-title">Delete Note</h2>
     </div>
-  </div> -->
+    
+    <div class="modal-content">
+      <p>Are you sure you want to permanently delete this note? This action cannot be undone.</p>
+    </div>
+    
+    <div class="modal-actions">
+      <button 
+        type="button" 
+        class="btn btn-secondary" 
+        (click)="cancelDelete()">
+        Cancel
+      </button>
+      <button 
+        type="button" 
+        class="btn btn-danger" 
+        (click)="onDelete()">
+        Delete Note
+      </button>
+    </div>
+  </div>
 </div>
+</div>
+
+

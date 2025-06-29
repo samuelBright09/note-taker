@@ -1,0 +1,62 @@
+.arch {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Inter', sans-serif;
+  color: #333; // A softer dark color
+
+  h1 {
+    font-size: 2.5rem;
+    color: #1a202c; // Darker heading
+    margin-bottom: 10px;
+    text-align: center;
+    @media (max-width: 768px) {
+      font-size: 2rem;
+    }
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: #555;
+    text-align: center;
+    margin-bottom: 30px;
+    line-height: 1.5;
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+
+  .arch-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    justify-content: center; // Center cards if there are fewer than a full row
+
+    // Styling for the "No notes archived yet" message
+    > p {
+      grid-column: 1 / -1; // Span across all columns
+      text-align: center;
+      padding: 40px;
+      background-color: #f8f8f8;
+      border-radius: 12px;
+      border: 1px dashed #ccc;
+      color: #777;
+      font-style: italic;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      // Ensure it's visually distinct and centered
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 150px; // Provide some vertical space
+      
+      a {
+        color: #007bff; // Link color
+        text-decoration: underline;
+        &:hover {
+          color: #0056b3;
+        }
+      }
+    }
+  }
+}

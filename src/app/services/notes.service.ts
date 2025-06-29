@@ -114,6 +114,7 @@ export class NotesService {
       tags: tags.map((tag) => tag.toLowerCase()), // Store tags in lowercase
     };
     this.notes.unshift(newNote);
+    console.log(newNote)
     this.notesSubject.next([...this.notes]);
     this.saveNotesToLocalStorage();
   }
@@ -155,7 +156,7 @@ export class NotesService {
     ]).pipe(
       map(([notes, searchTerm, activeTagFilter, showArchived]) => {
         let filteredNotes = notes; // First, filter by active
-        if (searchTerm) {
+        if (showArchived) {
           filteredNotes = notes;
         } else {
           filteredNotes = filteredNotes.filter((note) => !note.isArchived);
@@ -262,6 +263,7 @@ export class NotesService {
     if (index > -1) {
       this.notes[index] = { ...this.notes[index], isArchived };
       this.notesSubject.next([...this.notes]);
+      console.log([...this.notes]);
       this.saveNotesToLocalStorage();
     }
   }

@@ -1,6 +1,6 @@
 <div class="dash">
   <!-- Back button - only show when tag filter is active -->
-  <button
+  <button class="back-button"
     *ngIf="showBackButton$ | async"
     (click)="goBack()"
     class="back-button"
@@ -24,9 +24,15 @@
   </div>
 
   <div class="note-cards">
-    @for (note of notes; track $index) {
+    @if (notes.length === 0) {
+    <p>No notes found.</p>
+    }@else {
 
-    <app-note-card [note]="note"></app-note-card>
+      @for (note of notes; track $index) {
+  
+      <app-note-card [note]="note"></app-note-card>
+      }
     }
+
   </div>
 </div>
