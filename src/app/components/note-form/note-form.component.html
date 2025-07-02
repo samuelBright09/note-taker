@@ -26,7 +26,6 @@
         class="archive-btn"
           *ngIf="isEditingNote"
           (click)="isArchived ? unArchiveNote() : archiveNote()"
-          [disabled]="isArchived ? false : true"
           [class.disabled]="isArchived"
          
         >

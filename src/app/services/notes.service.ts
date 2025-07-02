@@ -114,7 +114,6 @@ export class NotesService {
       tags: tags.map((tag) => tag.toLowerCase()), // Store tags in lowercase
     };
     this.notes.unshift(newNote);
-    console.log(newNote)
     this.notesSubject.next([...this.notes]);
     this.saveNotesToLocalStorage();
   }
@@ -226,11 +225,7 @@ export class NotesService {
   }
 
   addToArchive(id: string): void {
-    const note = this.notes.find((note) => note.id === id);
-    if (note) {
-      note.isArchived = true;
-      this.archivedNotesSubject.next([...this.archivedNotes]);
-    }
+   this.toggleArchive(id, true);
   }
 
   getNoteById(id: string): Observable<Note | undefined> {
@@ -263,7 +258,6 @@ export class NotesService {
     if (index > -1) {
       this.notes[index] = { ...this.notes[index], isArchived };
       this.notesSubject.next([...this.notes]);
-      console.log([...this.notes]);
       this.saveNotesToLocalStorage();
     }
   }
